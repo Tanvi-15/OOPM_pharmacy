@@ -12,7 +12,7 @@ public class BookDatabase
 
     public static void deleteBook(String title) {
         for (int i = 0; i < all_books.size(); i++) {
-            if (title.equalsIgnoreCase(all_books.get(i).title)) {
+            if (title.equalsIgnoreCase(all_books.get(i).name)) {
                 all_books.remove(i);
                 System.out.println("Book successfully deleted from system.");
             }
@@ -22,13 +22,13 @@ public class BookDatabase
     public static void displayDatabase() {
         System.out.println("Title\tAuthor\tPublication\tISBN\t\tQuantity");
         for (int i = 0; i < all_books.size(); i++) {
-            all_books.get(i).getBookDetails();
+            all_books.get(i).getMedicineDetails();
             System.out.println();
         }
     }
     public static String search(String given_title) {
         for (int i = 0; i < all_books.size(); i++) {
-            if (given_title.equalsIgnoreCase(all_books.get(i).title)) {
+            if (given_title.equalsIgnoreCase(all_books.get(i).name)) {
                 return given_title;
             } 
         }

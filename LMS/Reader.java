@@ -64,7 +64,7 @@ public class Reader extends Library{
         if (availableBookTitle != "") {
             readerAcct.borrowedBooksV.add(availableBookTitle);
             for (int i = 0; i < BookDatabase.all_books.size(); i++) {
-                if(readerAcct.borrowedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).title)){
+                if(readerAcct.borrowedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).name)){
                     BookDatabase.all_books.get(i).quantity--;
                     System.out.println("Book was successfully issued!");
                 }
@@ -83,7 +83,7 @@ public class Reader extends Library{
             readerAcct.returnedBooksV.add(availableBookTitle);
             readerAcct.borrowedBooksV.removeElement(availableBookTitle);
             for (int i = 0; i < BookDatabase.all_books.size(); i++) {
-                if(readerAcct.returnedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).title)){
+                if(readerAcct.returnedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).name)){
                     BookDatabase.all_books.get(i).quantity++;
                     System.out.println("Book was successfully returned!");
                 }
