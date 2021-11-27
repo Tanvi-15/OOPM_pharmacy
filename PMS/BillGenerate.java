@@ -24,7 +24,7 @@ public class BillGenerate {
 
     public double total() {
         for (int i = 0; i < purchased_medicines.size(); i++) {
-            total_price += (purchased_medicines.get(i).price * med_quantities.get(i));
+            total_price += (purchased_medicines.get(i).price * Integer.valueOf(med_quantities.get(i)));
         }
         return total_price;
     }
@@ -35,6 +35,7 @@ public class BillGenerate {
         for (int i = 0; i < purchased_medicines.size(); i++) {
             purchased_medicines.get(i).getMedicineDetails();
         }
+        total_price = total();
         System.out.println("Total Price = " + total_price);
     }
   
