@@ -1,6 +1,8 @@
 package LMS;
 import java.util.*;
 
+import Library;
+
 public class Admin extends Library{
     public static String admin_name;
     public static String admin_ID;

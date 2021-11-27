@@ -1,6 +1,8 @@
 package LMS;
 import java.util.*;
 
+import Library;
+
 public class Reader extends Library{
     public String ReaderName;
     public String ReaderID;
