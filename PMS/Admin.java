@@ -1,5 +1,6 @@
 package PMS;
 import java.util.*;
+
 public class Admin extends Pharmacy {
     public static String admin_name;
     public static MedicineDatabase db = new MedicineDatabase(); 
