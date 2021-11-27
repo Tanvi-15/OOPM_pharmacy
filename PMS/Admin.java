@@ -3,8 +3,8 @@ import java.util.*;
 public class Admin extends Pharmacy {
     public static String admin_name;
     public static MedicineDatabase db = new MedicineDatabase(); 
-    Admin() {
-        
+    Admin(String name) { 
+        admin_name = name;
     }
     public static void choice() {
         System.out.print("\033[H\033[2J");  
@@ -39,7 +39,7 @@ public class Admin extends Pharmacy {
                     System.out.println("Invalid choice!");
             }
         }
-        sc.close();
+        //sc.close();
     }
     public static void addMedicine() {
         Scanner sc = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class Admin extends Pharmacy {
         Double price = sc.nextDouble();
         Medicine med = new Medicine(name, company, quantity, expiry_date, price); 
         MedicineDatabase.addMedicine(med);
-        sc.close();
+        //sc.close();
     }
 
     public static void deleteMedicine() {
@@ -63,7 +63,7 @@ public class Admin extends Pharmacy {
         System.out.println("Enter the name of the medicine you want to delete: ");
         String name = sc.next();
         MedicineDatabase.deleteMedicine(name);
-        sc.close();
+        //sc.close();
     }
     
 }
