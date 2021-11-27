@@ -7,21 +7,24 @@ public class BillGenerate {
     public String Phone_number ;//ISBN
     public String DoctorName;
     public Vector<Medicine> purchased_medicines;
+    public Vector<Integer> med_quantities;
     public double total_price;
 
     //construct
-    BillGenerate (String cust_name, String date, String Phone_number, String DoctorName) {
+    BillGenerate (String cust_name, String date, String Phone_number, String DoctorName, Vector<Medicine> purcMedicines, Vector<Integer> quantities) {
         this.cust_name = cust_name;
         this.date = date;
         this.Phone_number=Phone_number;
         this.DoctorName=DoctorName;
+        this.purchased_medicines = purcMedicines;
+        this.med_quantities = quantities;
         total_price = 0;
         
     }
 
     public double total() {
         for (int i = 0; i < purchased_medicines.size(); i++) {
-            total_price += purchased_medicines.get(i).price;
+            total_price += (purchased_medicines.get(i).price * med_quantities.get(i));
         }
         return total_price;
     }
@@ -37,26 +40,7 @@ public class BillGenerate {
   
 }
 
-public void purchaseMedicine(){
-    Scanner b=new Scanner(System.in);
-    System.out.println("Enter Medicine name: ");
-    String bname=b.next();
 
-    String availableMedicineName=MedicineDatabase.search(bname);
-    if (availableMedicineName!=""){
-        purchased_medicines.add(availableMedicineName); 
-
-        for (int i = 0; i < MedicineDatabase.all_medicines.size(); i++) {
-                        if(purchased_medicines.get(i).equalsIgnoreCase(MedicineDatabase.all_medicines.get(i).name)){
-                            MedicineDatabase.all_medicines.get(i).quantity--;
-                            System.out.println("Medicine was successfully issued!");
-                        }
-                    }
-    }
-    else{
-        System.out.println("Medicine is not available in database!");
-    }
-}
 
 /*
 Input: customer name, date, phone number, doctor

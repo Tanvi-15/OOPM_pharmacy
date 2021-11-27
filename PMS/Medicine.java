@@ -13,8 +13,7 @@ public class Medicine {
         this.company = company;
         this.quantity=quantity;
         this.expiry_date=expiry_date ;
-        this.price=price ;
-        
+        this.price=price;
     }
 
     public void getMedicineDetails() { //getBookDetails

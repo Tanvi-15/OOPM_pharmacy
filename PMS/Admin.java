@@ -14,7 +14,7 @@ public class Admin extends Pharmacy {
         Scanner sc =  new Scanner(System.in);
         boolean flag = true;
         while (flag) {
-            System.out.println("\n1. Add medicine to database.\n2. Delete Medicine from database.\n3. Display Database\n4. Logout\n5. Exit");
+            System.out.println("\n1. Add medicine to database.\n2. Delete Medicine from database.\n3. Display Database\n4. Generate Bill\n5. Display All bills \n6. Search for Bill\n7. Logout\n8. Exit");
             int ch = sc.nextInt();
             switch(ch) {
                 case 1: 
@@ -26,12 +26,25 @@ public class Admin extends Pharmacy {
                 case 3:
                     MedicineDatabase.displayDatabase();
                     break;
-                case 4: 
+                case 4:
+                    generateBill();
+                    break; //generate bill;
+                case 5:
+                    BillRecords.displayBills();
+                    break; //display all bills
+                case 6:
+                    System.out.println("Enter user contact number to search for their bill: ");
+                    String user_contact = sc.next();
+                    System.out.println("Enter the date(DD/MM/YYYY) of billing: ");
+                    String date = sc.next();
+                    BillRecords.search(user_contact, date);
+                    break; // search for a bill
+                case 7: 
                     System.out.print("\033[H\033[2J");
                     System.out.flush(); //clear space/screen
                     main(null);// logout opt to again login
                     break;
-                case 5:
+                case 8:
                     flag = false;
                     System.exit(0);
                     break;
@@ -64,6 +77,63 @@ public class Admin extends Pharmacy {
         String name = sc.next();
         MedicineDatabase.deleteMedicine(name);
         //sc.close();
+    }
+
+    public static void generateBill() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter customer name: ");
+        String name = sc.next();
+        System.out.println("Enter date of purchase: ");
+        String date = sc.next();
+        System.out.println("Enter phone number: ");
+        String phone_no = sc.next();
+        System.out.println("Enter doctor referral: ");
+        String doctor = sc.next();
+        System.out.println("Add medicines to cart: ");
+        Vector<Medicine> cust_meds = new Vector<Medicine>();
+        Vector<Integer> quantity = new Vector<Integer>();
+        boolean flag = true;
+        while (flag) {
+            purchaseMedicine(cust_meds, quantity);
+            System.out.println("Do you want more medicines? (Y/N)");
+            String med_choice = sc.next();
+            if (!med_choice.equalsIgnoreCase("Y")) {
+                flag = false;
+            }
+        }
+        BillGenerate b = new BillGenerate(name, date, phone_no, doctor, cust_meds, quantity); 
+        BillRecords.addBill(b);
+        //sc.close();
+    }
+
+    public static void purchaseMedicine(Vector<Medicine> purchased_medicines, Vector<Integer> quantitites){
+        Scanner b = new Scanner(System.in);
+        System.out.println("Enter Medicine name: ");
+        String Med_name = b.next();   
+        System.out.println("Enter Medicine quantity: ");
+        int Med_quantity = b.nextInt();   
+        boolean availablility = false;
+        for (int i = 0; i < MedicineDatabase.all_medicines.size(); i++) {
+            if (MedicineDatabase.all_medicines.get(i).name.equalsIgnoreCase(Med_name)) {
+                purchased_medicines.add(MedicineDatabase.all_medicines.get(i));
+                if (Med_quantity <= MedicineDatabase.all_medicines.get(i).quantity) {
+                    MedicineDatabase.all_medicines.get(i).quantity -= Med_quantity;
+                    quantitites.add(Med_quantity);
+                    System.out.println("Medicine was successfully added to cart!");
+                    availablility = true;
+                    break;
+                }
+                else {
+                    System.out.println("Sufficient quantity not available!");
+                    availablility = true;
+                    break;
+                }
+            }
+        }
+        if (availablility == false) {
+            System.out.println("Medicine is not available in database!");
+        }
+        
     }
     
 }

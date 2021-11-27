@@ -13,12 +13,13 @@ public class BillRecords {
             System.out.println();
         }
     }
-    public static boolean search(String given_contact) {
+    public static void search(String given_contact, String given_date) {
         for (int i = 0; i < all_Bills.size(); i++) {
-            if (given_contact.equals(all_Bills.get(i).Phone_number)) {
-                return true;
+            if (given_contact.equals(all_Bills.get(i).Phone_number) && given_date.equals(all_Bills.get(i).date)) {
+                all_Bills.get(i).getBillDetails();
+                return;
             } 
         }
-        return false;
+        System.out.println("Record not present in system!");
     }
 }
