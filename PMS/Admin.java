@@ -2,17 +2,15 @@ package PMS;
 import java.util.*;
 public class Admin extends Pharmacy {
     public static String admin_name;
-    public static MedicineDatabase db = new MedicineDatabase(); //obj
+    public static MedicineDatabase db = new MedicineDatabase(); 
+    Admin() {
         
-    Admin(String admin_name1) {
-        admin_name = admin_name1;
     }
-
-    public void choice() {
+    public static void choice() {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         //System.out.flush();
-        System.out.println("Welcome Admin, " + admin_name + " !");
+        System.out.println("Welcome Admin!");
         Scanner sc =  new Scanner(System.in);
         boolean flag = true;
         while (flag) {

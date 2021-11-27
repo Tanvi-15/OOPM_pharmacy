@@ -41,8 +41,7 @@ public class Pharmacy {
                     String password = sc.next();                  
                     boolean check_login = login(name, password);
                     if (check_login == true) {
-                        Admin adm_obj = new Admin(name);
-                        adm_obj.choice();
+                        Admin.choice();
                     }
                     break;
                 case 2:
