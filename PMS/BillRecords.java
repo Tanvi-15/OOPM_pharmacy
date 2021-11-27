@@ -15,7 +15,7 @@ public class BillRecords {
     }
     public static boolean search(String given_contact) {
         for (int i = 0; i < all_Bills.size(); i++) {
-            if (given_contact.equals(all_Bills.get(i).contact)) {
+            if (given_contact.equals(all_Bills.get(i).Phone_number)) {
                 return true;
             } 
         }

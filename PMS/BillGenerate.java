@@ -6,8 +6,8 @@ public class BillGenerate {
     public String date;// author //company
     public String Phone_number ;//ISBN
     public String DoctorName;
-
     public Vector<Medicine> purchased_medicines;
+    public double total_price;
 
     //construct
     BillGenerate (String cust_name, String date, String Phone_number, String DoctorName) {
@@ -15,43 +15,26 @@ public class BillGenerate {
         this.date = date;
         this.Phone_number=Phone_number;
         this.DoctorName=DoctorName;
+        total_price = 0;
         
+    }
+
+    public double total() {
+        for (int i = 0; i < purchased_medicines.size(); i++) {
+            total_price += purchased_medicines.get(i).price;
+        }
+        return total_price;
     }
 
     public void getBillDetails() { //getBookDetails
         System.out.print(cust_name + "\t" + date + "\t" +Phone_number+ "\t\t" + DoctorName+ "\t" );
+        System.out.println();
+        for (int i = 0; i < purchased_medicines.size(); i++) {
+            purchased_medicines.get(i).getMedicineDetails();
+        }
+        System.out.println("Total Price = " + total_price);
     }
   
 }
 
-public void purchaseMedicine(){
-    Scanner b=new Scanner(System.in);
-    System.out.println("Enter Medicine name: ");
-    
-}
-<<<<<<< HEAD
-// public void borrowedBooks(){
-//     Scanner b = new Scanner(System.in);
-//     System.out.println("Enter book title: ");
-//     String btitle=b.next();
-//     String availableBookTitle = BookDatabase.search(btitle);
-//     if (availableBookTitle != "") {
-//         readerAcct.borrowedBooksV.add(availableBookTitle);
-//         for (int i = 0; i < BookDatabase.all_books.size(); i++) {
-//             if(readerAcct.borrowedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).title)){
-//                 BookDatabase.all_books.get(i).quantity--;
-//                 System.out.println("Book was successfully issued!");
-//             }
-//         }
-//     }
-//     else {
-//         System.out.println("Book is not available in database!");
-//     }
-// }
-=======
-/*
-Input: customer name, date, phone number, doctor
-Additional Input: Medicine, Quantity, (price, auto generate)
-Calculate: Total Price
-*/
->>>>>>> 1e7d54b46f83a5698c9c350f2a93853b2b7c0861
+
