@@ -5,11 +5,10 @@ public class BillRecords {
     
     public static void addBill(BillGenerate b) {
         all_Bills.add(b);
-        System.out.println("Bill successfully added to system.");
+        System.out.println("\nBill successfully added to system.");
     }
 
     public static void displayBills() {
-        System.out.println("Name\tCompany\tQuantity\tExpiry\t\tPrice");
         for (int i = 0; i < all_Bills.size(); i++) {
             all_Bills.get(i).getBillDetails();
             System.out.println();

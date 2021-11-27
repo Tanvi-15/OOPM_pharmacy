@@ -28,14 +28,18 @@ public class BillGenerate {
         return total_price;
     }
 
-    public void getBillDetails() { //getBookDetails
-        System.out.print(cust_name + "\t" + date + "\t" +Phone_number+ "\t\t" + DoctorName+ "\t" );
-        System.out.println();
+    public void getBillDetails() {
+        System.out.println("Customer Name: " + cust_name); 
+        System.out.println("Date: " + date); 
+        System.out.println("Phone Number: " + Phone_number); 
+        System.out.println("Doctor Referral: " + DoctorName); 
+        System.out.println("Name\tCompany\tQuantity\t\tPrice");
         for (int i = 0; i < purchased_medicines.size(); i++) {
-            purchased_medicines.get(i).getMedicineDetails();
+            Medicine m = purchased_medicines.get(i);
+            System.out.print(m.name + "\t" + m.company + "\t" + med_quantities.get(i) + "\t" + m.price + "\t" );
         }
         total_price = total();
-        System.out.println("Total Price = " + total_price);
+        System.out.println("\nTotal Price = " + total_price);
     }
 }
 

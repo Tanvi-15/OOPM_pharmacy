@@ -115,7 +115,9 @@ public class Admin extends Pharmacy {
             }
         }
         BillGenerate b = new BillGenerate(name, date, phone_no, doctor, cust_meds, quantity); 
+        b.getBillDetails();
         BillRecords.addBill(b);
+        
     }
 
     public static void purchaseMedicine(Vector<Medicine> purchased_medicines, Vector<Integer> quantitites){
