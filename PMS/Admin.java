@@ -68,7 +68,6 @@ public class Admin extends Pharmacy {
                     System.out.println("Invalid choice!");
             }
         }
-        //sc.close();
     }
     public static void addMedicine() {
         Scanner sc = new Scanner(System.in);
@@ -84,7 +83,6 @@ public class Admin extends Pharmacy {
         Double price = sc.nextDouble();
         Medicine med = new Medicine(name, company, quantity, expiry_date, price); 
         MedicineDatabase.addMedicine(med);
-        //sc.close();
     }
 
     public static void deleteMedicine() {
@@ -92,7 +90,6 @@ public class Admin extends Pharmacy {
         System.out.println("Enter the name of the medicine you want to delete: ");
         String name = sc.next();
         MedicineDatabase.deleteMedicine(name);
-        //sc.close();
     }
 
     public static void generateBill() {
@@ -119,7 +116,6 @@ public class Admin extends Pharmacy {
         }
         BillGenerate b = new BillGenerate(name, date, phone_no, doctor, cust_meds, quantity); 
         BillRecords.addBill(b);
-        //sc.close();
     }
 
     public static void purchaseMedicine(Vector<Medicine> purchased_medicines, Vector<Integer> quantitites){
@@ -151,6 +147,7 @@ public class Admin extends Pharmacy {
         }
         
     }
+
     public static boolean isNumeric(String s) {
         try {
             Integer.parseInt(s);

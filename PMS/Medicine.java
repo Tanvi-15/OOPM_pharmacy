@@ -1,13 +1,12 @@
 package PMS;
 
 public class Medicine {
-    public String name;// title
-    public String company;// author //company
+    public String name;
+    public String company;
     public int quantity;
-    public String expiry_date ;//ISBN
+    public String expiry_date ;
     public double price;
 
-    //construct
     Medicine (String name, String company, int quantity, String expiry_date, double price) {
         this.name = name;
         this.company = company;
@@ -16,7 +15,7 @@ public class Medicine {
         this.price=price;
     }
 
-    public void getMedicineDetails() { //getBookDetails
+    public void getMedicineDetails() { 
         System.out.print(name + "\t" + company + "\t" +quantity+ "\t\t" + expiry_date + "\t" + price + "\t" );
     }
 

@@ -2,10 +2,12 @@ package PMS;
 import java.util.*;
 public class BillRecords {
     public static Vector<BillGenerate> all_Bills = new Vector<BillGenerate>();
+    
     public static void addBill(BillGenerate b) {
         all_Bills.add(b);
         System.out.println("Bill successfully added to system.");
     }
+
     public static void displayBills() {
         System.out.println("Name\tCompany\tQuantity\tExpiry\t\tPrice");
         for (int i = 0; i < all_Bills.size(); i++) {
@@ -13,6 +15,7 @@ public class BillRecords {
             System.out.println();
         }
     }
+    
     public static void search(String given_contact, String given_date) {
         try {
             boolean flag = false;

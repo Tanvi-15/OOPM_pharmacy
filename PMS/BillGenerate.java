@@ -2,15 +2,14 @@ package PMS;
 import java.util.*;
 
 public class BillGenerate {
-    public String cust_name;// title
-    public String date;// author //company
-    public String Phone_number ;//ISBN
+    public String cust_name;
+    public String date;
+    public String Phone_number ;
     public String DoctorName;
     public Vector<Medicine> purchased_medicines;
     public Vector<Integer> med_quantities;
     public double total_price;
 
-    //construct
     BillGenerate (String cust_name, String date, String Phone_number, String DoctorName, Vector<Medicine> purcMedicines, Vector<Integer> quantities) {
         this.cust_name = cust_name;
         this.date = date;
@@ -38,14 +37,9 @@ public class BillGenerate {
         total_price = total();
         System.out.println("Total Price = " + total_price);
     }
-  
 }
 
 
 
-/*
-Input: customer name, date, phone number, doctor
-Additional Input: Medicine, Quantity, (price, auto generate)
-Calculate: Total Price
-*/
+
 
