@@ -4,11 +4,11 @@ public class Admin extends Pharmacy {
     public static String admin_name;
     public static MedicineDatabase db = new MedicineDatabase(); //obj
         
-    Admin(String admin_name1, String admin_ID1) {
+    Admin(String admin_name1) {
         admin_name = admin_name1;
     }
 
-    public static void choice() {
+    public void choice() {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
         //System.out.flush();
@@ -41,6 +41,7 @@ public class Admin extends Pharmacy {
                     System.out.println("Invalid choice!");
             }
         }
+        sc.close();
     }
     public static void addMedicine() {
         Scanner sc = new Scanner(System.in);
@@ -56,6 +57,7 @@ public class Admin extends Pharmacy {
         Double price = sc.nextDouble();
         Medicine med = new Medicine(name, company, quantity, expiry_date, price); 
         MedicineDatabase.addMedicine(med);
+        sc.close();
     }
 
     public static void deleteMedicine() {
@@ -63,6 +65,7 @@ public class Admin extends Pharmacy {
         System.out.println("Enter the name of the medicine you want to delete: ");
         String name = sc.next();
         MedicineDatabase.deleteMedicine(name);
+        sc.close();
     }
     
 }

@@ -41,6 +41,8 @@ public class Pharmacy {
                     String password = sc.next();                  
                     boolean check_login = login(name, password);
                     if (check_login == true) {
+                        Admin adm_obj = new Admin(name);
+                        adm_obj.choice();
                     }
                     break;
                 case 2:
@@ -56,6 +58,7 @@ public class Pharmacy {
                 default:
                     System.out.println("Invalid option selected.");
             }
-        }      
+        }   
+        sc.close();   
     }
 }

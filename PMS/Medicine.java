@@ -1,5 +1,4 @@
 package PMS;
-import java.util.*;
 
 public class Medicine {
     public String name;// title
