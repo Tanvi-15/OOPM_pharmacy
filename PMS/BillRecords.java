@@ -14,12 +14,27 @@ public class BillRecords {
         }
     }
     public static void search(String given_contact, String given_date) {
-        for (int i = 0; i < all_Bills.size(); i++) {
-            if (given_contact.equals(all_Bills.get(i).Phone_number) && given_date.equals(all_Bills.get(i).date)) {
-                all_Bills.get(i).getBillDetails();
-                return;
-            } 
+        try{
+            boolean flag = false;
+            
+            for (int i = 0; i < all_Bills.size(); i++) {
+                if (given_contact.equals(all_Bills.get(i).Phone_number) && given_date.equals(all_Bills.get(i).date)) {
+                    all_Bills.get(i).getBillDetails();
+                    flag=true;
+                }
+            }
+            if(flag!=true){
+                throw new Exception();
+            }
         }
-        System.out.println("Record not present in system!");
+        catch(Exception e)
+        {
+            System.out.println("Bill doesn't exist. Check the entered details again.");
+        }
+ 
+        }  
+
+        
+        // System.out.println("Record not present in system!");
     }
 }
