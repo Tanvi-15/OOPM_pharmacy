@@ -23,10 +23,10 @@ public class Admin extends Library{
             int ch = sc.nextInt();
             switch(ch) {
                 case 1: 
-                    addBook();
+                    addMedicine();
                     break;
                 case 2:
-                    deleteBook();
+                    deleteMedicine();
                     break;
                 case 3:
                     BookDatabase.displayDatabase();
@@ -45,26 +45,28 @@ public class Admin extends Library{
             }
         }
     }
-    public static void addBook() {
+    public static void addMedicine() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter book title: ");
-        String title = sc.next();
-        System.out.println("Enter book author: ");
-        String author = sc.next();
-        System.out.println("Enter book publication: ");
-        String publication = sc.next();
-        System.out.println("Enter book ISBN: ");
-        String ISBN = sc.next();
-        System.out.println("Enter book available quantity: ");
+        System.out.println("Enter medicine name: ");
+        String name = sc.next();
+        System.out.println("Enter production company name: ");
+        String production = sc.next();
+        System.out.println("Enter quantity of strips: ");
         int quantity = sc.nextInt();
-        Book b = new Book(title, author, publication, ISBN, quantity); 
-        BookDatabase.addBook(b);
+        System.out.println("Enter quantity of pills per strips: ");
+        int quantity_per_strip = sc.nextInt();
+        System.out.println("Enter expiry date: ");
+        String expiry_date = sc.next();
+        System.out.println("Is it to be given only on prescription? ");
+        String doctor_prescribed = sc.next();
+        Medicine med = new Medicine(name, production, quantity, quantity_per_strip, expiry_date,doctor_prescribed); 
+        BookDatabase.addMedicine(med);
     }
 
-    public static void deleteBook() {
+    public static void deleteMedicine() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the title of the book that you want to delete: ");
-        String title = sc.next();
-        BookDatabase.deleteBook(title);
+        System.out.println("Enter the name of the medicine you want to delete: ");
+        String name = sc.next();
+        BookDatabase.deleteBook(name);
     }
 }
