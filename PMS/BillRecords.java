@@ -14,7 +14,7 @@ public class BillRecords {
         }
     }
     public static void search(String given_contact, String given_date) {
-        try{
+        try {
             boolean flag = false;
             
             for (int i = 0; i < all_Bills.size(); i++) {
@@ -23,18 +23,15 @@ public class BillRecords {
                     flag=true;
                 }
             }
-            if(flag!=true){
+            if (flag != true) {
                 throw new Exception();
             }
         }
-        catch(Exception e)
-        {
-            System.out.println("Bill doesn't exist. Check the entered details again.");
+        catch(Exception e) {
+            System.out.println("Bill doesn't exist in system.");
         }
  
-        }  
+    }  
 
-        
-        // System.out.println("Record not present in system!");
-    }
 }
+

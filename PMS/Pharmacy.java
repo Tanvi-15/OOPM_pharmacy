@@ -97,7 +97,6 @@ public class Pharmacy {
                 default:
                     System.out.println("Invalid option selected.");
             }
-        }   
-        //sc.close();   
+        }     
     }
 }

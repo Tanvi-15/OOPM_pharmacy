@@ -1,5 +1,12 @@
 package PMS;
 import java.util.*;
+class contactException extends Exception {
+    contactException() {
+    }
+    public String toString() {
+        return "Contact number is invalid.";
+    }
+}
 
 public class Admin extends Pharmacy {
     public static String admin_name;
@@ -34,12 +41,20 @@ public class Admin extends Pharmacy {
                     BillRecords.displayBills();
                     break; //display all bills
                 case 6:
-                    System.out.println("Enter user contact number to search for their bill: ");
-                    String user_contact = sc.next();
-                    System.out.println("Enter the date(DD/MM/YYYY) of billing: ");
-                    String date = sc.next();
-                    BillRecords.search(user_contact, date);
-                    break; // search for a bill
+                    try {
+                        System.out.println("Enter user contact number to search for their bill: ");
+                        String user_contact = sc.next();
+                        if (user_contact.length() != 10 || !isNumeric(user_contact)) {
+                            throw new contactException();   
+                        }
+                        System.out.println("Enter the date(DD/MM/YYYY) of billing: ");
+                        String date = sc.next();
+                        BillRecords.search(user_contact, date);
+                    }
+                    catch(contactException e) {
+                        System.out.println(e.toString());
+                    }
+                    break; 
                 case 7: 
                     System.out.print("\033[H\033[2J");
                     System.out.flush(); //clear space/screen
@@ -136,5 +151,14 @@ public class Admin extends Pharmacy {
         }
         
     }
-    
+    public static boolean isNumeric(String s) {
+        try {
+            Integer.parseInt(s);
+        } 
+        catch (NumberFormatException ex) {
+            return false;
+        }
+        return true;
+    }
 }
+
