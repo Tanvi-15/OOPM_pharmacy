@@ -27,31 +27,26 @@ public class BillGenerate {
 public void purchaseMedicine(){
     Scanner b=new Scanner(System.in);
     System.out.println("Enter Medicine name: ");
-    
+    String bname=b.next();
+
+    String availableMedicineName=MedicineDatabase.search(bname);
+    if (availableMedicineName!=""){
+        purchased_medicines.add(availableMedicineName); 
+
+        for (int i = 0; i < MedicineDatabase.all_medicines.size(); i++) {
+                        if(purchased_medicines.get(i).equalsIgnoreCase(MedicineDatabase.all_medicines.get(i).name)){
+                            MedicineDatabase.all_medicines.get(i).quantity--;
+                            System.out.println("Medicine was successfully issued!");
+                        }
+                    }
+    }
+    else{
+        System.out.println("Medicine is not available in database!");
+    }
 }
-<<<<<<< HEAD
-// public void borrowedBooks(){
-//     Scanner b = new Scanner(System.in);
-//     System.out.println("Enter book title: ");
-//     String btitle=b.next();
-//     String availableBookTitle = BookDatabase.search(btitle);
-//     if (availableBookTitle != "") {
-//         readerAcct.borrowedBooksV.add(availableBookTitle);
-//         for (int i = 0; i < BookDatabase.all_books.size(); i++) {
-//             if(readerAcct.borrowedBooksV.get(i).equalsIgnoreCase(BookDatabase.all_books.get(i).title)){
-//                 BookDatabase.all_books.get(i).quantity--;
-//                 System.out.println("Book was successfully issued!");
-//             }
-//         }
-//     }
-//     else {
-//         System.out.println("Book is not available in database!");
-//     }
-// }
-=======
+
 /*
 Input: customer name, date, phone number, doctor
 Additional Input: Medicine, Quantity, (price, auto generate)
 Calculate: Total Price
 */
->>>>>>> 1e7d54b46f83a5698c9c350f2a93853b2b7c0861
