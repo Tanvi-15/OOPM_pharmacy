@@ -29,6 +29,7 @@ public void purchaseMedicine(){
     System.out.println("Enter Medicine name: ");
     
 }
+<<<<<<< HEAD
 // public void borrowedBooks(){
 //     Scanner b = new Scanner(System.in);
 //     System.out.println("Enter book title: ");
@@ -47,3 +48,10 @@ public void purchaseMedicine(){
 //         System.out.println("Book is not available in database!");
 //     }
 // }
+=======
+/*
+Input: customer name, date, phone number, doctor
+Additional Input: Medicine, Quantity, (price, auto generate)
+Calculate: Total Price
+*/
+>>>>>>> 1e7d54b46f83a5698c9c350f2a93853b2b7c0861

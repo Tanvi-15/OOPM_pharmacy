@@ -24,14 +24,5 @@ public class MedicineDatabase {
             all_medicines.get(i).getMedicineDetails();
             System.out.println();
         }
-    }
-    public static String search(String given_name) {
-        for (int i = 0; i < all_medicines.size(); i++) {
-            if (given_name.equalsIgnoreCase(all_medicines.get(i).name)) {
-                return given_name;
-            } 
-        }
-        return "";
-    }
-    
+    }    
 }
