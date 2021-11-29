@@ -29,17 +29,23 @@ public class BillGenerate {
     }
 
     public void getBillDetails() {
+        total_price = 0;
         System.out.println("Customer Name: " + cust_name); 
         System.out.println("Date: " + date); 
         System.out.println("Phone Number: " + Phone_number); 
         System.out.println("Doctor Referral: " + DoctorName); 
-        System.out.println("Name\tCompany\tQuantity\t\tPrice");
+        System.out.println("Name\t\tCompany\t\tQuantity\tPrice");
         for (int i = 0; i < purchased_medicines.size(); i++) {
             Medicine m = purchased_medicines.get(i);
-            System.out.print(m.name + "\t" + m.company + "\t" + med_quantities.get(i) + "\t" + m.price + "\t" );
+            System.out.print(m.name + "\t\t" + m.company + "\t\t" + med_quantities.get(i) + "\t\t" + m.price + "\t" );
         }
         total_price = total();
         System.out.println("\nTotal Price = " + total_price);
+    }
+
+    public void getBillDetails2() {
+        System.out.println("Customer Name\t\tDate\t\tContact\t\tAmout");
+        System.out.println(cust_name + "\t\t\t" + date + "\t" + Phone_number + "\t" + total_price);
     }
 }
 

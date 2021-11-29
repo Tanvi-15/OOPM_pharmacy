@@ -10,7 +10,7 @@ public class BillRecords {
 
     public static void displayBills() {
         for (int i = 0; i < all_Bills.size(); i++) {
-            all_Bills.get(i).getBillDetails();
+            all_Bills.get(i).getBillDetails2();
             System.out.println();
         }
     }

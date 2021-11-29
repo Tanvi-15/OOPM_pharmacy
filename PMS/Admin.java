@@ -68,7 +68,7 @@ public class Admin extends Pharmacy {
                     System.out.println("Invalid choice!");
             }
         }
-        sc.close();
+        //sc.close();
     }
     public static void addMedicine() {
         Scanner sc = new Scanner(System.in);
@@ -84,7 +84,7 @@ public class Admin extends Pharmacy {
         Double price = sc.nextDouble();
         Medicine med = new Medicine(name, company, quantity, expiry_date, price); 
         MedicineDatabase.addMedicine(med);
-        sc.close();
+        //sc.close();
     }
 
     public static void deleteMedicine() {
@@ -92,35 +92,45 @@ public class Admin extends Pharmacy {
         System.out.println("Enter the name of the medicine you want to delete: ");
         String name = sc.next();
         MedicineDatabase.deleteMedicine(name);
-        sc.close();
+        //sc.close();
     }
 
     public static void generateBill() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter customer name: ");
-        String name = sc.next();
-        System.out.println("Enter date of purchase: ");
-        String date = sc.next();
-        System.out.println("Enter phone number: ");
-        String phone_no = sc.next();
-        System.out.println("Enter doctor referral: ");
-        String doctor = sc.next();
-        System.out.println("Add medicines to cart: ");
-        Vector<Medicine> cust_meds = new Vector<Medicine>();
-        Vector<Integer> quantity = new Vector<Integer>();
-        boolean flag = true;
-        while (flag) {
-            purchaseMedicine(cust_meds, quantity);
-            System.out.println("Do you want more medicines? (Y/N)");
-            String med_choice = sc.next();
-            if (!med_choice.equalsIgnoreCase("Y")) {
-                flag = false;
+        try {
+            System.out.println("Enter customer name: ");
+            String name = sc.next();
+            System.out.println("Enter date of purchase: ");
+            String date = sc.next();
+            System.out.println("Enter phone number: ");
+            String phone_no = sc.next();
+            if (phone_no.length() != 10 || !isNumeric(phone_no)) {
+                throw new contactException();   
             }
+            System.out.println("Enter doctor referral: ");
+            String doctor = sc.next();
+            System.out.println("Add medicines to cart: ");
+            Vector<Medicine> cust_meds = new Vector<Medicine>();
+            Vector<Integer> quantity = new Vector<Integer>();
+            boolean flag = true;
+            while (flag) {
+                purchaseMedicine(cust_meds, quantity);
+                System.out.println("Do you want more medicines? (Y/N)");
+                String med_choice = sc.next();
+                if (!med_choice.equalsIgnoreCase("Y")) {
+                    flag = false;
+                }
+            }
+            BillGenerate b = new BillGenerate(name, date, phone_no, doctor, cust_meds, quantity); 
+            if (!b.purchased_medicines.isEmpty()) {
+                b.getBillDetails();
+                BillRecords.addBill(b);
+            }
+            //sc.close();
         }
-        BillGenerate b = new BillGenerate(name, date, phone_no, doctor, cust_meds, quantity); 
-        b.getBillDetails();
-        BillRecords.addBill(b);
-        sc.close();
+        catch(contactException e) {
+            System.out.println(e.toString());
+        }
         
     }
 
@@ -131,6 +141,10 @@ public class Admin extends Pharmacy {
         System.out.println("Enter Medicine quantity: ");
         int Med_quantity = b.nextInt();   
         boolean availablility = false;
+        if (MedicineDatabase.all_medicines.isEmpty()) {
+            System.out.println("Medicine is not available in database!");
+            return;
+        }
         for (int i = 0; i < MedicineDatabase.all_medicines.size(); i++) {
             if (MedicineDatabase.all_medicines.get(i).name.equalsIgnoreCase(Med_name)) {
                 purchased_medicines.add(MedicineDatabase.all_medicines.get(i));
@@ -139,24 +153,24 @@ public class Admin extends Pharmacy {
                     quantitites.add(Med_quantity);
                     System.out.println("Medicine was successfully added to cart!");
                     availablility = true;
-                    break;
+                    return;
                 }
                 else {
                     System.out.println("Sufficient quantity not available!");
                     availablility = true;
-                    break;
+                    return;
                 }
             }
         }
         if (availablility == false) {
             System.out.println("Medicine is not available in database!");
         }
-        b.close();
+        //b.close();
     }
 
     public static boolean isNumeric(String s) {
         try {
-            Integer.parseInt(s);
+            Long.parseLong(s);
         } 
         catch (NumberFormatException ex) {
             return false;

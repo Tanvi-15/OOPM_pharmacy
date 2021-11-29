@@ -16,7 +16,7 @@ public class Medicine {
     }
 
     public void getMedicineDetails() { 
-        System.out.print(name + "\t" + company + "\t" +quantity+ "\t\t" + expiry_date + "\t" + price + "\t" );
+        System.out.print(name + "\t\t" + company + "\t\t" +quantity+ "\t\t" + expiry_date + "\t" + price + "\t" );
     }
 
 }
