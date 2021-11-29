@@ -44,6 +44,7 @@ public class Pharmacy {
         }
     }
     
+    //main execution
     public static void main(String args[]) {
         usernames.add("ishika");
         passwords.add("ishika");

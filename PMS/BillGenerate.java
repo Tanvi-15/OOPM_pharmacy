@@ -1,6 +1,7 @@
 package PMS;
 import java.util.*;
 
+//Creation of a bill
 public class BillGenerate {
     public String cust_name;
     public String date;
@@ -21,6 +22,7 @@ public class BillGenerate {
         
     }
 
+    //calculates total
     public double total() {
         for (int i = 0; i < purchased_medicines.size(); i++) {
             total_price += (purchased_medicines.get(i).price * Integer.valueOf(med_quantities.get(i)));
@@ -28,6 +30,7 @@ public class BillGenerate {
         return total_price;
     }
 
+    //Print one bill
     public void getBillDetails() {
         total_price = 0;
         System.out.println("Customer Name: " + cust_name); 
@@ -43,8 +46,9 @@ public class BillGenerate {
         System.out.println("\nTotal Price = " + total_price);
     }
 
+    //To print all bills
     public void getBillDetails2() {
-        System.out.println("Customer Name\t\tDate\t\tContact\t\tAmout");
+        System.out.println("Customer Name\t\tDate\t\tContact\t\tAmount");
         System.out.println(cust_name + "\t\t\t" + date + "\t" + Phone_number + "\t" + total_price);
     }
 }
